@@ -1,0 +1,36 @@
+:root {
+  /* Colors */
+  --xp-blue: #245DDA;
+  --xp-blue-dark: #1A3D91;
+  --xp-blue-gradient-start: #245DDA;
+  --xp-blue-gradient-end: #1842B3;
+  
+  --xp-green: #3C8C1D;
+  --xp-green-gradient-start: #3C8C1D;
+  --xp-green-gradient-end: #245511;
+  
+  --xp-orange: #E66C18;
+  --xp-red: #D93321;
+  
+  --xp-bg-color: #ECE9D8;
+  --xp-window-bg: #FFFFFF;
+  
+  --xp-border-color: #00138C;
+  --xp-border-light: #FFF;
+  --xp-border-dark: #808080;
+  
+  /* Fonts */
+  --font-main: 'Tahoma', 'Segoe UI', sans-serif;
+  --font-title: 'Trebuchet MS', sans-serif;
+  
+  /* Z-Index */
+  --z-desktop: 1;
+  --z-window: 10;
+  --z-taskbar: 1000;
+  --z-start-menu: 1001;
+  --z-modal: 2000;
+  
+  /* Dimensions */
+  --taskbar-height: 30px;
+  --titlebar-height: 30px;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Windows XP Portfolio</title>
+  <meta name="description" content="A Windows XP themed portfolio website" />
+</head>
+
+<body>
+  <div id="app">
+    <div id="desktop" class="desktop">
+      <!-- Desktop Icons will be injected here -->
+    </div>
+
+    <div id="window-container">
+      <!-- Windows will be injected here -->
+    </div>
+
+    <div id="taskbar" class="taskbar">
+      <button id="start-button" class="start-button">
+        <img src="/icons/xp-logo.svg" alt="logo" class="start-logo" />
+        <span>Start</span>
+      </button>
+      <div class="taskbar-divider"></div>
+      <div id="taskbar-windows" class="taskbar-windows">
+        <!-- Window buttons will be injected here -->
+      </div>
+      <div class="system-tray">
+        <div id="clock" class="clock">12:00 PM</div>
+      </div>
+    </div>
+
+    <div id="start-menu" class="start-menu hidden">
+      <div class="start-menu-header">
+        <div class="user-account">
+          <div class="user-icon"></div>
+          <span class="user-name">Guest</span>
+        </div>
+      </div>
+      <div class="start-menu-body">
+        <div class="start-menu-left">
+          <div class="start-item" data-app="internet-explorer">
+            <span class="icon ie-icon"></span>
+            <span class="label">Internet Explorer</span>
+          </div>
+          <div class="start-item" data-app="minesweeper">
+            <span class="icon mine-icon"></span>
+            <span class="label">Minesweeper</span>
+          </div>
+          <div class="start-item" data-app="paint">
+            <span class="icon paint-icon"></span>
+            <span class="label">Paint</span>
+          </div>
+          <div class="start-item" data-app="calculator">
+            <span class="icon calc-icon"></span>
+            <span class="label">Calculator</span>
+          </div>
+        </div>
+        <div class="start-menu-right">
+          <div class="start-item" data-app="my-computer">
+            <span class="icon computer-icon"></span>
+            <span class="label">My Computer</span>
+          </div>
+          <div class="start-item" data-app="documents">
+            <span class="icon docs-icon"></span>
+            <span class="label">My Documents</span>
+          </div>
+        </div>
+      </div>
+      <div class="start-menu-footer">
+        <div class="start-item log-off">
+          <span class="icon logoff-icon"></span>
+          <span class="label">Log Off</span>
+        </div>
+        <div class="start-item turn-off">
+          <span class="icon shutdown-icon"></span>
+          <span class="label">Turn Off Computer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+
+</html>

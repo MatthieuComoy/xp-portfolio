@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matthieu's Portfolio</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #FFFFFF;
+            color: #000000;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000080;
+            font-size: 32px;
+            border-bottom: 2px solid #000080;
+        }
+
+        .marquee-container {
+            background-color: #FFFFCC;
+            border: 1px solid #999999;
+            padding: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .project-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .project-item {
+            display: flex;
+            align-items: center;
+            border: 1px solid #CCCCCC;
+            background-color: #F0F0F0;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            margin-right: 15px;
+        }
+
+        .project-info h2 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+        }
+
+        .project-info a {
+            color: #0000FF;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .project-info p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+            border-top: 1px solid #CCCCCC;
+            padding-top: 10px;
+        }
+
+        blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="content">
+        <h1>Welcome to My World Wide Web Page</h1>
+
+        <div class="marquee-container">
+            <marquee>*** UNDER CONSTRUCTION *** Welcome to my digital portfolio *** Best viewed in Internet Explorer 6.0
+                ***</marquee>
+        </div>
+
+        <p>Hello visitor! You have reached the personal homepage of Matthieu.</p>
+        <p>Here you will find a collection of my latest digital creations and experiments.</p>
+
+        <hr>
+
+        <h2 style="color: #800000;">My Projects</h2>
+
+        <ul class="project-list">
+            <li class="project-item">
+                <img src="/icons/euromaps.svg" alt="EuroMaps" class="project-icon">
+                <div class="project-info">
+                    <h2><a href="https://euromaps.netlify.app/" target="_blank" rel="noopener noreferrer">EuroMaps</a>
+                        <blink style="color: red; font-size: 10px;">NEW!</blink>
+                    </h2>
+                    <p>An interactive map application for visualizing European data.</p>
+                </div>
+            </li>
+        </ul>
+
+        <div class="footer">
+            <p>&copy; 2025 Matthieu Comoy. All rights reserved.</p>
+            <p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/User_icon_2.svg" width="16" height="16"
+                    alt="Counter">
+                Visitor Count: 1337
+            </p>
+        </div>
+    </div>
+
+</body>
+
+</html>

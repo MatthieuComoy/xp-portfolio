@@ -1,0 +1,61 @@
+.desktop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: var(--taskbar-height);
+    background-image: url('/images/bliss.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: var(--z-desktop);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 20px;
+    height: calc(100% - var(--taskbar-height));
+}
+
+.desktop-icon {
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+    padding: 5px;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+.desktop-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.desktop-icon.selected {
+    background-color: rgba(11, 97, 255, 0.2);
+    border-color: rgba(11, 97, 255, 0.4);
+}
+
+.desktop-icon img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 5px;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+}
+
+.desktop-icon span {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-size: 11px;
+    line-height: 1.2;
+    padding: 0 2px;
+}
+
+.desktop-icon.selected span {
+    background-color: #0B61FF;
+    color: white;
+    text-shadow: none;
+}

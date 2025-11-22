@@ -1,0 +1,279 @@
+.taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--taskbar-height);
+    background: linear-gradient(to bottom, #245DDA 0%, #1842B3 10%, #245DDA 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    z-index: var(--z-taskbar);
+    padding: 0;
+}
+
+.start-button {
+    height: 100%;
+    background: linear-gradient(to bottom, #3C8C1D 0%, #245511 100%);
+    border: none;
+    border-radius: 0 10px 10px 0;
+    padding: 0 10px 0 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+
+.start-button:hover {
+    filter: brightness(1.1);
+}
+
+.start-button:active,
+.start-button.active {
+    filter: brightness(0.9);
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.start-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.start-button span {
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 16px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.taskbar-divider {
+    width: 2px;
+    height: 80%;
+    background: rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    margin-right: 5px;
+}
+
+.taskbar-windows {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 2px 0;
+    overflow: hidden;
+}
+
+.taskbar-item {
+    background: #3C81F3;
+    color: white;
+    border: 1px solid #1F4EBF;
+    border-radius: 3px;
+    padding: 2px 5px;
+    margin-right: 3px;
+    min-width: 150px;
+    max-width: 200px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    cursor: default;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.taskbar-item:hover {
+    background: #5394FF;
+}
+
+.taskbar-item.active {
+    background: #1E52B7;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.taskbar-item img {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.taskbar-item span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 11px;
+}
+
+.system-tray {
+    background: #0B77E9;
+    border-left: 1px solid #1042AF;
+    height: 100%;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.clock {
+    color: white;
+    font-size: 11px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Start Menu */
+.start-menu {
+    position: absolute;
+    bottom: var(--taskbar-height);
+    left: 0;
+    width: 380px;
+    background: white;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 2px -2px 5px rgba(0, 0, 0, 0.5);
+    z-index: var(--z-start-menu);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #00138C;
+}
+
+.start-menu-header {
+    height: 60px;
+    background: linear-gradient(to bottom, #245DDA 0%, #1842B3 100%);
+    border-radius: 4px 4px 0 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.user-account {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    background: #FFD65E;
+    border: 2px solid white;
+    border-radius: 3px;
+    margin-right: 10px;
+    background-image: url('/icons/chess.png');
+    /* Placeholder */
+    background-size: cover;
+}
+
+.user-name {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.start-menu-body {
+    display: flex;
+    height: 350px;
+    border-top: 1px solid #E66C18;
+}
+
+.start-menu-left {
+    flex: 1;
+    background: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.start-menu-right {
+    flex: 1;
+    background: #D3E5FA;
+    border-left: 1px solid #9FBDE5;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.start-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: default;
+    color: #333;
+}
+
+.start-item:hover {
+    background-color: #2F71CD;
+    color: white;
+}
+
+.start-item .icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.ie-icon {
+    background-image: url('/icons/ie.svg');
+}
+
+.mine-icon {
+    background-image: url('/icons/mine.svg');
+}
+
+.paint-icon {
+    background-image: url('/icons/paint.svg');
+}
+
+.calc-icon {
+    background-image: url('/icons/calc.svg');
+}
+
+.computer-icon {
+    background-image: url('/icons/computer.svg');
+}
+
+.docs-icon {
+    background-image: url('/icons/folder.svg');
+}
+
+.logoff-icon {
+    background-image: url('/icons/key.svg');
+}
+
+.shutdown-icon {
+    background-image: url('/icons/power.svg');
+}
+
+.start-item .label {
+    font-size: 12px;
+}
+
+.start-menu-left .start-item .label {
+    font-weight: bold;
+}
+
+.start-menu-footer {
+    height: 40px;
+    background: linear-gradient(to bottom, #245DDA 0%, #1842B3 100%);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+}
+
+.start-menu-footer .start-item {
+    color: white;
+}
+
+.start-menu-footer .start-item:hover {
+    background: none;
+    filter: brightness(1.2);
+}
+
+.start-menu-footer .icon {
+    width: 20px;
+    height: 20px;
+}

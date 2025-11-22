@@ -1,0 +1,58 @@
+@import './variables.css';
+@import './desktop.css';
+@import './taskbar.css';
+@import './windows.css';
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    font-size: 11px;
+    overflow: hidden;
+    background-color: #000;
+    height: 100vh;
+    width: 100vw;
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+    background: #ECE9D8;
+}
+
+::-webkit-scrollbar-button {
+    width: 16px;
+    height: 16px;
+    background: #ECE9D8;
+    border: 1px solid #FFF;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #C2D3FC;
+    border: 1px solid #FFF;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+}
+
+::-webkit-scrollbar-track {
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyIiBoZWlnaHQ9IjIiPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNFN0U3RTciLz48cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjRTdFN0U3Ii8+PHJlY3QgeD0iMSIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0iI0YzRjNGMyIvPjxyZWN0IHk9IjEiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNGM0YzRjMiLz48L3N2Zz4=");
+}
