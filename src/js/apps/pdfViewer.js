@@ -1,29 +1,29 @@
 export class PdfViewer {
-    constructor() {
-        this.pdfUrl = '/cv.pdf'; // Placeholder path
-    }
+  constructor() {
+    this.pdfUrl = '/[CV] Matthieu Comoy.pdf';
+  }
 
-    getWindowOptions() {
-        return {
-            title: 'My CV.pdf - Adobe Reader',
-            icon: 'pdf',
-            width: 700,
-            height: 800,
-            app: this
-        };
-    }
+  getWindowOptions() {
+    return {
+      title: 'My CV.pdf - Adobe Reader',
+      icon: 'pdf',
+      width: 700,
+      height: 800,
+      app: this
+    };
+  }
 
-    init(container) {
-        this.container = container;
-        this.render();
-    }
+  init(container) {
+    this.container = container;
+    this.render();
+  }
 
-    render() {
-        this.container.innerHTML = `
+  render() {
+    this.container.innerHTML = `
       <div class="pdf-viewer">
         <div class="pdf-toolbar">
-          <button class="pdf-btn">Save a Copy</button>
-          <button class="pdf-btn">Print</button>
+          <button class="pdf-btn" onclick="window.open('${this.pdfUrl}', '_blank')">Save a Copy</button>
+          <button class="pdf-btn" onclick="window.print()">Print</button>
           <div class="pdf-separator"></div>
           <button class="pdf-btn">Previous</button>
           <button class="pdf-btn">Next</button>
@@ -35,13 +35,7 @@ export class PdfViewer {
           </div>
         </div>
         <div class="pdf-content">
-          <div class="pdf-placeholder">
-            <p>CV PDF Placeholder</p>
-            <p>Please place your cv.pdf in the public folder.</p>
-            <a href="#" class="download-link">Download CV</a>
-          </div>
-          <!-- iframe would go here for real PDF -->
-          <!-- <iframe src="${this.pdfUrl}" frameborder="0"></iframe> -->
+          <iframe src="${this.pdfUrl}" frameborder="0"></iframe>
         </div>
       </div>
       <style>
@@ -99,5 +93,5 @@ export class PdfViewer {
         }
       </style>
     `;
-    }
+  }
 }

@@ -43,18 +43,43 @@ class App {
             this.launchApp(e.detail.appId, e.detail.args);
         });
 
-        // Launch Notepad on startup
+        // Launch Internet Explorer on startup (will be behind Notepad)
+        setTimeout(() => {
+            this.launchApp('internet-explorer');
+        }, 300);
+
+        // Launch Notepad on startup (will be on top)
         setTimeout(() => {
             this.launchApp('notepad', {
-                content: `Welcome to my Windows XP Portfolio!
+                content: `┌─────────────────────────────────────┐
+│  ╔╦╗╔═╗╔╦╗╔╦╗╦ ╦╦╔═╗╦ ╦            │
+│  ║║║╠═╣ ║  ║ ╠═╣║║╣ ║ ║            │
+│  ╩ ╩╩ ╩ ╩  ╩ ╩ ╩╩╚═╝╚═╝            │
+│  ╔═╗╔═╗╔╦╗╔═╗╦ ╦                   │
+│  ║  ║ ║║║║║ ║╚╦╝                   │
+│  ╚═╝╚═╝╩ ╩╚═╝ ╩                    │
+└─────────────────────────────────────┘
 
-Here you can explore my projects and skills in a nostalgic environment.
+Hello, I'm Matthieu Comoy
+A data engineer with a background 
+in dev and digital art
 
-- Double click on "My Computer" to see my tech stack.
-- Check out "Graphic Projects" folder on the desktop for my art.
-- Use the Start Menu to access other apps.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Welcome to my Windows XP Portfolio!
+
+Explore my projects and skills in 
+a nostalgic environment.
+
+📁 Navigation Guide:
+  • "My Computer" → tech stack
+  • "Graphic Projects" → my art
+  • Start Menu → other apps
+  • Try the Solitaire game!
 
 Enjoy your stay!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 `
             });
         }, 500);
