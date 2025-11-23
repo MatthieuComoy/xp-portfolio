@@ -9,18 +9,26 @@ export class WindowManager {
         // Bind methods
         this.handleMouseMove = this.handleMouseMove.bind(this);
         this.handleMouseUp = this.handleMouseUp.bind(this);
+        this.handleTouchMove = this.handleTouchMove.bind(this);
+        this.handleTouchEnd = this.handleTouchEnd.bind(this);
     }
 
     createWindow(options) {
         const id = 'window-' + Date.now();
+        const isMobile = window.innerWidth < 768;
+        const defaultWidth = isMobile ? Math.min(600, window.innerWidth * 0.9) : (options.width || 600);
+        const defaultHeight = isMobile ? Math.min(400, window.innerHeight * 0.6) : (options.height || 400);
+        const defaultX = isMobile ? (window.innerWidth - defaultWidth) / 2 : (options.x || 50 + (this.windows.length * 20));
+        const defaultY = isMobile ? 20 + (this.windows.length * 20) : (options.y || 50 + (this.windows.length * 20));
+
         const win = {
             id,
             title: options.title || 'Untitled',
             icon: options.icon || 'default',
-            width: options.width || 600,
-            height: options.height || 400,
-            x: options.x || 50 + (this.windows.length * 20),
-            y: options.y || 50 + (this.windows.length * 20),
+            width: defaultWidth,
+            height: defaultHeight,
+            x: defaultX,
+            y: defaultY,
             isMinimized: false,
             isMaximized: false,
             content: options.content || '',
@@ -61,6 +69,7 @@ export class WindowManager {
       <div class="window-body">
         ${win.content}
       </div>
+      <div class="resize-handle"></div>
     `;
 
         this.container.appendChild(el);
@@ -68,6 +77,11 @@ export class WindowManager {
         // Event listeners
         const titleBar = el.querySelector('.title-bar');
         titleBar.addEventListener('mousedown', (e) => this.startDragging(e, win));
+        titleBar.addEventListener('touchstart', (e) => this.startDragging(e, win), { passive: false });
+
+        const resizeHandle = el.querySelector('.resize-handle');
+        resizeHandle.addEventListener('mousedown', (e) => this.startResizing(e, win));
+        resizeHandle.addEventListener('touchstart', (e) => this.startResizing(e, win), { passive: false });
 
         el.addEventListener('mousedown', () => this.focusWindow(win.id));
 
@@ -232,37 +246,121 @@ export class WindowManager {
         if (win.isMaximized) return;
         if (e.target.closest('.title-bar-controls')) return;
 
+        // Prevent default only for touch to stop scrolling
+        if (e.type === 'touchstart') {
+            e.preventDefault();
+        }
+
         this.isDragging = true;
         this.dragTarget = win;
-        this.dragOffsetX = e.clientX - win.x;
-        this.dragOffsetY = e.clientY - win.y;
 
-        document.addEventListener('mousemove', this.handleMouseMove);
-        document.addEventListener('mouseup', this.handleMouseUp);
+        const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+        const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+
+        this.dragOffsetX = clientX - win.x;
+        this.dragOffsetY = clientY - win.y;
+
+        if (e.type === 'touchstart') {
+            document.addEventListener('touchmove', this.handleTouchMove, { passive: false });
+            document.addEventListener('touchend', this.handleTouchEnd);
+        } else {
+            document.addEventListener('mousemove', this.handleMouseMove);
+            document.addEventListener('mouseup', this.handleMouseUp);
+        }
+    }
+
+    startResizing(e, win) {
+        if (win.isMaximized) return;
+        e.stopPropagation();
+
+        if (e.type === 'touchstart') {
+            e.preventDefault();
+        }
+
+        this.isResizing = true;
+        this.resizeTarget = win;
+
+        const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+        const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+
+        this.resizeStartX = clientX;
+        this.resizeStartY = clientY;
+        this.initialWidth = win.width;
+        this.initialHeight = win.height;
+
+        if (e.type === 'touchstart') {
+            document.addEventListener('touchmove', this.handleTouchMove, { passive: false });
+            document.addEventListener('touchend', this.handleTouchEnd);
+        } else {
+            document.addEventListener('mousemove', this.handleMouseMove);
+            document.addEventListener('mouseup', this.handleMouseUp);
+        }
     }
 
     handleMouseMove(e) {
-        if (!this.isDragging || !this.dragTarget) return;
+        this.handleMove(e.clientX, e.clientY);
+    }
 
-        const win = this.dragTarget;
-        const el = document.getElementById(win.id);
+    handleTouchMove(e) {
+        e.preventDefault(); // Prevent scrolling
+        this.handleMove(e.touches[0].clientX, e.touches[0].clientY);
+    }
 
-        if (el) {
-            const newX = e.clientX - this.dragOffsetX;
-            const newY = e.clientY - this.dragOffsetY;
+    handleMove(clientX, clientY) {
+        if (this.isDragging && this.dragTarget) {
+            const win = this.dragTarget;
+            const el = document.getElementById(win.id);
 
-            win.x = newX;
-            win.y = newY;
+            if (el) {
+                const newX = clientX - this.dragOffsetX;
+                const newY = clientY - this.dragOffsetY;
 
-            el.style.left = newX + 'px';
-            el.style.top = newY + 'px';
+                // Simple bounds checking (optional, can be improved)
+                // const maxX = window.innerWidth - 50;
+                // const maxY = window.innerHeight - 50;
+
+                win.x = newX;
+                win.y = newY;
+
+                el.style.left = newX + 'px';
+                el.style.top = newY + 'px';
+            }
+        } else if (this.isResizing && this.resizeTarget) {
+            const win = this.resizeTarget;
+            const el = document.getElementById(win.id);
+
+            if (el) {
+                const deltaX = clientX - this.resizeStartX;
+                const deltaY = clientY - this.resizeStartY;
+
+                const newWidth = Math.max(200, this.initialWidth + deltaX);
+                const newHeight = Math.max(150, this.initialHeight + deltaY);
+
+                win.width = newWidth;
+                win.height = newHeight;
+
+                el.style.width = newWidth + 'px';
+                el.style.height = newHeight + 'px';
+            }
         }
     }
 
     handleMouseUp() {
-        this.isDragging = false;
-        this.dragTarget = null;
+        this.stopInteraction();
         document.removeEventListener('mousemove', this.handleMouseMove);
         document.removeEventListener('mouseup', this.handleMouseUp);
+    }
+
+    handleTouchEnd() {
+        this.stopInteraction();
+        document.removeEventListener('touchmove', this.handleTouchMove);
+        document.removeEventListener('touchend', this.handleTouchEnd);
+    }
+
+    stopInteraction() {
+        this.isDragging = false;
+        this.dragTarget = null;
+        this.isResizing = false;
+        this.resizeTarget = null;
     }
 }
